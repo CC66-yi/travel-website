@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel - 环球奇景旅行官网</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+        img {
+            display: block;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        button {
+            transition: 0.2s ease;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.85;
+        }
+
+        /* 顶部Banner区域 */
+        .top-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 15%;
+            gap: 40px;
+            min-height: 400px;
+        }
+        .banner-text h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: #222;
+        }
+        .banner-text p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .banner-btn {
+            padding: 10px 26px;
+            background: #000;
+            color: #fff;
+            border: none;
+            font-size: 15px;
+        }
+        .banner-img {
+            width: 48%;
+            height: 320px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* 黑色分割横幅 */
+        .black-bar {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 35px 0;
+        }
+        .black-bar h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .black-bar p {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+        .black-bar button {
+            padding: 7px 20px;
+            border: none;
+            background: #fff;
+            color: #000;
+            font-size: 14px;
+        }
+
+        /* 三图景点卡片区 */
+        .scene-row {
+            padding: 60px 15%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .scene-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px #eee;
+        }
+        .scene-card .img-box {
+            height: 200px;
+        }
+        .scene-card p {
+            font-size: 14px;
+            color: #444;
+            padding: 12px;
+            text-align: center;
+        }
+
+        /* 六宫格世界奇观区 */
+        .world-view {
+            padding: 0 15% 60px;
+        }
+        .world-view h3 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 35px;
+            color: #333;
+        }
+        .world-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .world-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px #eeeeee;
+        }
+        .world-card .img-box {
+            height: 200px;
+        }
+        .world-card p {
+            font-size: 13px;
+            padding: 10px;
+            text-align: center;
+            color: #555;
+        }
+
+        /* 城市人文板块 */
+        .city-block {
+            background: #000;
+            color: #fff;
+            padding: 60px 15%;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        .city-text {
+            flex: 1;
+        }
+        .city-text h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .city-text p {
+            font-size: 15px;
+            color: #ccc;
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        .city-img {
+            flex: 1;
+            height: 280px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* 旅行计划板块 */
+        .plan-section {
+            padding: 60px 15%;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .plan-text {
+            flex: 1;
+        }
+        .plan-text h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .plan-text p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        .plan-img {
+            flex: 1;
+            height: 280px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* 用户评价区 */
+        .review-section {
+            padding: 0 15% 60px;
+        }
+        .review-section h3 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 35px;
+        }
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+        .review-card {
+            border: 1px solid #eee;
+            padding: 25px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #555;
+            margin: 0 auto 12px;
+        }
+        .review-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 底部联系区 */
+        .contact-footer {
+            padding: 60px 15%;
+            display: flex;
+            gap: 40px;
+            background: #f8f8f8;
+        }
+        .contact-form {
+            flex: 1;
+        }
+        .contact-form h3 {
+            margin-bottom: 18px;
+            font-size: 22px;
+        }
+        .contact-form input {
+            display: block;
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .contact-form button {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            color: #fff;
+            border: none;
+            font-size: 15px;
+            border-radius: 4px;
+        }
+        .contact-img {
+            flex: 1;
+            height: 320px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .top-banner, .city-block, .plan-section, .contact-footer {
+                flex-direction: column;
+            }
+            .scene-row, .world-grid, .review-grid {
+                grid-template-columns: 1fr;
+            }
+            .top-banner, .scene-row, .world-view, .city-block, .plan-section, .review-section, .contact-footer {
+                padding: 30px 5%;
+            }
+            .banner-img, .city-img, .plan-img, .contact-img {
+                width: 100%;
+            }
+            .top-banner {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .banner-img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部Banner：新疆层叠彩山 -->
+    <section class="top-banner">
+        <div class="banner-text">
+            <h2>奔赴全球绝美秘境</h2>
+            <p>探索小众世界级风景，定制专属旅途路线，打卡人少景美的神仙目的地</p>
+            <button class="banner-btn">立即规划行程</button>
+        </div>
+        <div class="banner-img">
+            <img src="申1.jpg" alt="新疆层叠山地奇景">
+        </div>
+    </section>
+
+    <div class="black-bar">
+        <h3>告别千篇一律，去看真正震撼的风景</h3>
+        <p>雪山、海湾、戈壁、火山、花海，全世界的奇观都在这里集结</p>
+        <button>查看全部目的地</button>
+    </div>
+
+    <!-- 三栏热门目的地 -->
+    <section class="scene-row">
+        <div class="scene-card">
+            <div class="img-box">
+                <img src="申2.jpg" alt="阿尔卑斯雪山湖泊">
+            </div>
+            <p>雪山湖泊 · 纯净山野秘境</p>
+        </div>
+        <div class="scene-card">
+            <div class="img-box">
+                <img src="申3.jpg" alt="瑞士山谷小镇">
+            </div>
+            <p>山间小镇 · 治愈慢生活之旅</p>
+        </div>
+        <div class="scene-card">
+            <div class="img-box">
+                <img src="申4.jpg" alt="晚霞海滩">
+            </div>
+            <p>海岸沙滩 · 落日度假胜地</p>
+        </div>
+    </section>
+
+    <!-- 六宫格世界奇观 -->
+    <section class="world-view">
+        <h3>世界级自然与人文奇观</h3>
+        <div class="world-grid">
+            <div class="world-card">
+                <div class="img-box">
+                    <img src="申5.jpg" alt="蘑菇风蚀岩石">
+                </div>
+                <p>戈壁蘑菇奇石地貌</p>
+            </div>
+            <div class="world-card">
+                <div class="img-box">
+                    <img src="申6.jpg" alt="埃及金字塔">
+                </div>
+                <p>埃及千年人文古迹</p>
+            </div>
+            <div class="world-card">
+                <div class="img-box">
+                    <img src="申7.jpg" alt="蓝焰火山">
+                </div>
+                <p>奇幻蓝焰火山秘境</p>
+            </div>
+            <div class="world-card">
+                <div class="img-box">
+                    <img src="申8.jpg" alt="荷兰花田">
+                </div>
+                <p>荷兰彩虹花海田园</p>
+            </div>
+            <div class="world-card">
+                <div class="img-box">
+                    <img src="申9.jpg" alt="草原羊群">
+                </div>
+                <p>北疆草原牧歌风光</p>
+            </div>
+            <div class="world-card">
+                <div class="img-box">
+                    <img src="申10.jpg" alt="水下瀑布">
+                </div>
+                <p>海岛水下瀑布奇景</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 城市人文板块 -->
+    <section class="city-block">
+        <div class="city-text">
+            <h3>漫步特色小镇与古城</h3>
+            <p>穿梭欧式山谷小镇、荒漠古迹城市，沉浸式感受不同地域的人文烟火气。</p>
+            <p>我们为你整理街巷打卡点、地道美食、平价住宿，新手出行也零踩坑。</p>
+        </div>
+        <div class="city-img">
+            <img src="申3.jpg" alt="瑞士山间小镇风光">
+        </div>
+    </section>
+
+    <!-- 定制旅行计划 -->
+    <section class="plan-section">
+        <div class="plan-text">
+            <h3>一键定制专属旅行方案</h3>
+            <p>输入出行天数、同行人群、偏爱风景类型，智能匹配最合适的目的地与路线。</p>
+            <p>涵盖交通预订、景区门票、特色体验项目、避坑贴士全套内容，省去海量攻略查找。</p>
+        </div>
+        <div class="plan-img">
+            <img src="申11.jpg" alt="层叠彩色火山山">
+        </div>
+    </section>
+
+    <!-- 用户评价 -->
+    <section class="review-section">
+        <h3>旅行者真实口碑</h3>
+        <div class="review-grid">
+            <div class="review-card">
+                <div class="avatar">
+                 <img src="申4.jpg"alt="用户头像">
+                 </div>
+                <p>小众景点推荐太惊喜，看到了别人拍不到的风景，行程节奏安排得刚刚好！</p>
+            </div>
+            <div class="review-card">
+                <div class="avatar">
+                 <img src="申10.jpg"alt="用户头像">
+                 </div>
+                <p>客服会根据预算改路线，住宿性价比超高，出国游全程省心不踩雷。</p>
+            </div>
+            <div class="review-card">
+                <div class="avatar">
+                 <img src="申8.jpg"alt="用户头像">
+                 </div>
+                <p>花海、火山、雪山线路全都有选择，终于打卡了收藏多年的奇观目的地！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部联系咨询 -->
+    <section class="contact-footer">
+        <div class="contact-form">
+            <h3>咨询定制旅行</h3>
+            <input type="text" placeholder="请输入你的姓名">
+            <input type="tel" placeholder="联系手机号码">
+            <input type="text" placeholder="想去的目的地/出行时间">
+            <button>提交咨询，获取方案</button>
+        </div>
+        <div class="contact-img">
+            <img src="申12.jpg" alt="白色裂纹奇石地貌">
+        </div>
+    </section>
+</body>
+</html>
